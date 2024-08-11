@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">Travel Recommendation</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <section class="search-section">
+        <form class="search-form">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search for beaches, temples, or countries..."
+          />
+          <button type="submit">Search</button>
+        </form>
+      </section>
+
+      <section class="results-section">
+        <div class="results-container">
+          <!-- Results will be dynamically inserted here -->
+        </div>
+      </section>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="overlay"></div>
+      <div class="content">
+        <h1>Discover Your Next Adventure</h1>
+        <p>
+          Explore destinations around the world and embark on unforgettable
+          journeys.
+        </p>
+        <div class="social-media">
+          <a href="#" class="social-link"
+            ><img src="assets/facebook.png" alt="Facebook"
+          /></a>
+          <a href="#" class="social-link"
+            ><img src="assets/twitter.png" alt="Twitter"
+          /></a>
+          <a href="#" class="social-link"
+            ><img src="assets/instagram.png" alt="Instagram"
+          /></a>
+        </div>
+        <a href="booking.html" class="book-now-button">Book Now</a>
+
+        <!-- Recommendations Section -->
+        <div class="recommendations">
+          <h2>Recommended Destinations</h2>
+          <div class="recommendation-list">
+            <!-- Recommendations will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

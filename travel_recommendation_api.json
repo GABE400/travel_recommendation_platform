@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Malibu Beach",
+    "description": "A beautiful beach in California.",
+    "imageUrl": "assets/beach/1.jpg",
+    "type": "beach"
+  },
+  {
+    "name": "Kyoto Temples",
+    "description": "Historic temples in Kyoto, Japan.",
+    "imageUrl": "assets/temple/1.jpg",
+    "type": "beach"
+  },
+  {
+    "name": "Paris",
+    "description": "The capital city of France, known for the Eiffel Tower.",
+    "imageUrl": "assets/country/1.jpg",
+    "type": "country"
+  }
+]

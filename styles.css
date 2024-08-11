@@ -1,0 +1,398 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 15px;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff6347;
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.hero-section {
+  position: relative;
+  background-image: url("assets/pexels-jimbear-957768.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(7, 101, 100, 0.8);
+}
+
+.hero-section .content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-section .social-media {
+  margin-bottom: 20px;
+}
+
+.hero-section .social-link img {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+}
+
+.hero-section .book-now-button {
+  display: inline-block;
+  padding: 10px 30px;
+  background-color: #ff6600;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.hero-section .book-now-button:hover {
+  background-color: #e65c00;
+}
+
+.recommendations {
+  margin-top: 40px;
+}
+
+.recommendations h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ff6600;
+}
+
+.recommendation-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.recommendation-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.recommendation-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.recommendation-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.recommendation-item p {
+  font-size: 1rem;
+}
+
+.recommendation-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-us {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-us h1,
+.about-us h2 {
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.about-us p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.team {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.team-member {
+  text-align: center;
+  max-width: 250px;
+}
+
+.team-member img {
+  width: 100%;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #ddd;
+}
+
+.team-member h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.team-member p {
+  font-size: 16px;
+  color: #777;
+}
+
+.contact-us {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-us h1 {
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.contact-us p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.contact-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ff6347;
+}
+
+.submit-button {
+  display: inline-block;
+  width: 100%;
+  padding: 15px;
+  background-color: #ff6347;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #ff4500;
+}
+
+.search-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search-form {
+  display: inline-block;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff4500;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    top: 0;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .nav-links li {
+    margin: 50px 0;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .nav-active {
+    transform: translateX(0);
+  }
+
+  /* Burger Animation */
+  .toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .toggle .line2 {
+    opacity: 0;
+  }
+
+  .toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .content h1 {
+    font-size: 36px;
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+
+  .social-link img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .book-now-button {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  .team {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    max-width: 300px;
+  }
+
+  .contact-us .container {
+    padding: 0 20px;
+  }
+}
