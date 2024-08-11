@@ -12,35 +12,61 @@ document.addEventListener("DOMContentLoaded", function () {
   const resultsContainer = document.querySelector(".results-container");
   const clearButton = document.querySelector(".clear-button");
 
-  let recommendations = [];
+  // Hardcoded recommendations with multiple images
+  const recommendations = [
+    {
+      name: "Beach",
+      description:
+        "A beautiful beach in California known for its stunning coastline.",
+      images: ["assets/beach/1.jpg", "assets/beach/2.jpg"],
+      type: "beach",
+    },
 
-  // Fetch data from the JSON file
-  fetch("travel_recommendation_api.json")
-    .then((response) => response.json())
-    .then((data) => {
-      recommendations = data;
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
+    {
+      name: "Temples",
+      description: "Historic temples in Kyoto, Japan.",
+      images: ["assets/temple/1.jpg", "assets/temple/2.jpg"],
+      type: "temples",
+    },
+    {
+      name: "Country",
+      description:
+        "A European country with a long Mediterranean coastline, rich in history and culture.",
+      images: ["assets/country/1.jpg", "assets/country/2.jpg"],
+      type: "country",
+    },
+  ];
 
   searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const query = searchInput.value.toLowerCase().trim();
 
     if (query) {
-      // Clear previous results
       resultsContainer.innerHTML = "";
 
-      // Filter the recommendations based on the search query
-      const filteredResults = recommendations.filter((place) => {
+      let filteredResults = recommendations.filter((place) => {
         return (
-          place.type.toLowerCase().includes(query) ||
-          place.name.toLowerCase().includes(query)
+          place.name.toLowerCase().includes(query) ||
+          place.type.toLowerCase().includes(query)
         );
       });
 
-      // Display the filtered results
+      if (filteredResults.length === 0) {
+        if (query.includes("temple")) {
+          filteredResults = recommendations
+            .filter((place) => place.type.toLowerCase() === "temple")
+            .slice(0, 2);
+        } else {
+          filteredResults = recommendations
+            .filter(
+              (place) =>
+                place.type.toLowerCase() === "beach" ||
+                place.type.toLowerCase() === "country"
+            )
+            .slice(0, 2);
+        }
+      }
+
       displayResults(filteredResults);
     }
   });
@@ -57,7 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
         resultItem.classList.add("result-item");
         resultItem.innerHTML = `
                   <h3>${result.name}</h3>
-                  <img src="${result.imageUrl}" alt="${result.name}">
+                  <div class="result-images">
+                      ${result.images
+                        .map(
+                          (image) => `<img src="${image}" alt="${result.name}">`
+                        )
+                        .join("")}
+                  </div>
                   <p>${result.description}</p>
               `;
         resultsContainer.appendChild(resultItem);
