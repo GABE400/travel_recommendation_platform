@@ -326,8 +326,8 @@ button:hover {
 
 .popup-section {
   display: none; /* Hidden by default */
-  position: absolute;
-  top: 100px; /* Adjust as needed */
+  position: fixed;
+  top: 60px; /* Adjust to be just below the navbar */
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
@@ -336,10 +336,11 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   z-index: 1000; /* Ensure it appears above other content */
+  padding: 20px;
 }
 
 .popup-content {
-  padding: 20px;
+  position: relative;
 }
 
 .popup-header {
@@ -351,11 +352,12 @@ button:hover {
 .popup-close {
   background: none;
   border: none;
+  color: #000000;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.results-container {
+.popup-results {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

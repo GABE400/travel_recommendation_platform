@@ -9,27 +9,48 @@ burger.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", function () {
   const searchForm = document.querySelector(".search-form");
   const searchInput = document.querySelector(".search-input");
-  const resultsContainer = document.querySelector(".results-container");
-  const clearButton = document.querySelector(".clear-button");
+  const popupSection = document.querySelector(".popup-section");
+  const popupResults = document.querySelector(".popup-results");
+  const popupCloseButton = document.querySelector(".popup-close");
 
-  // Hardcoded recommendations with multiple images
+  // Hardcoded recommendations
   const recommendations = [
     {
-      name: "Beach",
+      name: "Malibu Beach",
       description:
         "A beautiful beach in California known for its stunning coastline.",
       images: ["assets/beach/1.jpg", "assets/beach/2.jpg"],
       type: "beach",
     },
-
     {
-      name: "Temples",
-      description: "Historic temples in Kyoto, Japan.",
+      name: "Bora Bora",
+      description:
+        "A small South Pacific island northwest of Tahiti in French Polynesia.",
+      images: ["assets/beach/1.jpg", "assets/beach/2.jpg"],
+      type: "beach",
+    },
+    {
+      name: "Angkor Wat",
+      description:
+        "A temple complex in Cambodia and one of the largest religious monuments in the world.",
       images: ["assets/temple/1.jpg", "assets/temple/2.jpg"],
       type: "temples",
     },
     {
-      name: "Country",
+      name: "The Grand Palace",
+      description: "A complex of buildings in the heart of Bangkok, Thailand.",
+      images: ["assets/temple/1.jpg", "assets/temple/2.jpg"],
+      type: "temples",
+    },
+    {
+      name: "Japan",
+      description:
+        "A country in East Asia known for its blend of traditional and modern culture.",
+      images: ["assets/country/1.jpg", "assets/country/2.jpg"],
+      type: "country",
+    },
+    {
+      name: "Italy",
       description:
         "A European country with a long Mediterranean coastline, rich in history and culture.",
       images: ["assets/country/1.jpg", "assets/country/2.jpg"],
@@ -42,38 +63,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const query = searchInput.value.toLowerCase().trim();
 
     if (query) {
-      resultsContainer.innerHTML = "";
+      popupResults.innerHTML = "";
 
-      let filteredResults = recommendations.filter((place) => {
-        return (
+      // Filter recommendations
+      let filteredResults = recommendations.filter(
+        (place) =>
           place.name.toLowerCase().includes(query) ||
           place.type.toLowerCase().includes(query)
-        );
-      });
+      );
 
       if (filteredResults.length === 0) {
-        if (query.includes("temple")) {
-          filteredResults = recommendations
-            .filter((place) => place.type.toLowerCase() === "temple")
-            .slice(0, 2);
-        } else {
-          filteredResults = recommendations
-            .filter(
-              (place) =>
-                place.type.toLowerCase() === "beach" ||
-                place.type.toLowerCase() === "country"
-            )
-            .slice(0, 2);
-        }
+        filteredResults = recommendations
+          .filter((place) => place.type.toLowerCase() === "beach")
+          .slice(0, 2);
       }
 
       displayResults(filteredResults);
+      popupSection.style.display = "block"; // Show popup
     }
   });
 
-  clearButton.addEventListener("click", function () {
-    searchInput.value = "";
-    resultsContainer.innerHTML = "";
+  popupCloseButton.addEventListener("click", function () {
+    popupSection.style.display = "none"; // Hide popup
   });
 
   function displayResults(results) {
@@ -82,20 +93,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const resultItem = document.createElement("div");
         resultItem.classList.add("result-item");
         resultItem.innerHTML = `
-                  <h3>${result.name}</h3>
-                  <div class="result-images">
-                      ${result.images
-                        .map(
-                          (image) => `<img src="${image}" alt="${result.name}">`
-                        )
-                        .join("")}
-                  </div>
-                  <p>${result.description}</p>
-              `;
-        resultsContainer.appendChild(resultItem);
+          <h3>${result.name}</h3>
+          <div class="result-images">
+            ${result.images
+              .map((image) => `<img src="${image}" alt="${result.name}">`)
+              .join("")}
+          </div>
+          <p>${result.description}</p>
+        `;
+        popupResults.appendChild(resultItem);
       });
     } else {
-      resultsContainer.innerHTML = "<p>No results found.</p>";
+      popupResults.innerHTML = "<p>No results found.</p>";
     }
   }
 });
