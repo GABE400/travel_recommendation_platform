@@ -7,59 +7,66 @@ burger.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("travel_recommendation_api.json")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Data fetched:", data); // Log data to verify it's fetched
-      setupSearch(data);
-    })
-    .catch((error) => console.error("Error fetching data:", error));
-});
-
-function setupSearch(data) {
   const searchForm = document.querySelector(".search-form");
   const searchInput = document.querySelector(".search-input");
   const resultsContainer = document.querySelector(".results-container");
+  const clearButton = document.querySelector(".clear-button");
 
-  searchForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission
+  let recommendations = [];
 
-    const query = searchInput.value.toLowerCase().trim();
-    console.log("Search query:", query); // Log the search query
-
-    resultsContainer.innerHTML = ""; // Clear previous results
-
-    const filteredData = data.filter((item) => {
-      return item.type.includes(query);
+  // Fetch data from the JSON file
+  fetch("travel_recommendation_api.json")
+    .then((response) => response.json())
+    .then((data) => {
+      recommendations = data;
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
 
-    console.log("Filtered data:", filteredData); // Log the filtered results
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const query = searchInput.value.toLowerCase().trim();
 
-    displayResults(filteredData, resultsContainer);
+    if (query) {
+      // Clear previous results
+      resultsContainer.innerHTML = "";
+
+      // Filter the recommendations based on the search query
+      const filteredResults = recommendations.filter((place) => {
+        return (
+          place.type.toLowerCase().includes(query) ||
+          place.name.toLowerCase().includes(query)
+        );
+      });
+
+      // Display the filtered results
+      displayResults(filteredResults);
+    }
   });
-}
 
-function displayResults(recommendations, container) {
-  if (recommendations.length === 0) {
-    container.innerHTML = "<p>No results found.</p>";
-    return;
+  clearButton.addEventListener("click", function () {
+    searchInput.value = "";
+    resultsContainer.innerHTML = "";
+  });
+
+  function displayResults(results) {
+    if (results.length > 0) {
+      results.forEach((result) => {
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("result-item");
+        resultItem.innerHTML = `
+                  <h3>${result.name}</h3>
+                  <img src="${result.imageUrl}" alt="${result.name}">
+                  <p>${result.description}</p>
+              `;
+        resultsContainer.appendChild(resultItem);
+      });
+    } else {
+      resultsContainer.innerHTML = "<p>No results found.</p>";
+    }
   }
-
-  recommendations.forEach((item) => {
-    const recommendationItem = document.createElement("div");
-    recommendationItem.classList.add("recommendation-item");
-
-    recommendationItem.innerHTML = `
-          <img src="${item.imageUrl}" alt="${item.name}">
-          <h3>${item.name}</h3>
-          <p>${item.description}</p>
-      `;
-
-    container.appendChild(recommendationItem);
-  });
-
-  console.log("Results displayed successfully"); // Log when results are displayed
-}
+});
 
 // recommendation
 
